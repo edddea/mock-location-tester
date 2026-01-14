@@ -1,4 +1,4 @@
-package com.example.mocklocationtester.mock
+package com.nuttylabs.mocklocationtester.ui
 
 import android.location.Location
 import android.location.LocationManager

@@ -1,7 +1,8 @@
-package com.example.mocklocationtester
+package com.nuttylabs.mocklocationtester.ui
 
 import android.app.Application
 import com.google.android.libraries.places.api.Places
+import com.nuttylabs.mocklocationtester.BuildConfig
 
 class App : Application() {
   override fun onCreate() {

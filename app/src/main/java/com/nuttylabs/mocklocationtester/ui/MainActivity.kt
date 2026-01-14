@@ -1,4 +1,4 @@
-package com.example.mocklocationtester
+package com.nuttylabs.mocklocationtester.ui
 
 import android.Manifest
 import android.app.AppOpsManager
@@ -6,20 +6,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Process
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.launch
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
-import com.example.mocklocationtester.ui.MockLocationScreen
+import com.nuttylabs.mocklocationtester.BuildConfig
 
 class MainActivity : ComponentActivity() {
 
@@ -76,12 +75,12 @@ class MainActivity : ComponentActivity() {
     }
 
     fun checkMockPermission(context: Context): Boolean {
-        val opsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        val opsManager = context.getSystemService(APP_OPS_SERVICE) as AppOpsManager
         return try {
             // En Android Marshmallow (API 23) y superior
             opsManager.checkOp(
                 AppOpsManager.OPSTR_MOCK_LOCATION,
-                android.os.Process.myUid(),
+                Process.myUid(),
                 BuildConfig.APPLICATION_ID // Asegúrate de usar tu ID de paquete correcto
             ) == AppOpsManager.MODE_ALLOWED
         } catch (e: Exception) {
